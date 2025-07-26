@@ -12,12 +12,17 @@ class Tenant extends BaseTenant implements TenantWithDatabase
     use HasDatabase, HasDomains;
 
     public static function getCustomColumns(): array
-{
-    return [
-        'id',
-        'name',
-        'email',
-        'password',
-    ];
-}
+    {
+        return [
+            'id',
+            'name',
+            'email',
+            'password',
+        ];
+    }
+
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
 }

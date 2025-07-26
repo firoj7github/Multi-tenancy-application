@@ -1,7 +1,8 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Tenants') }}
+            <x-btn-link class="float-end" href="{{route('tenants.create')}}">Add Tenant</x-btn-link>
         </h2>
     </x-slot>
 
@@ -10,7 +11,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
-                    <x-btn-link href="{{route('tenants.index')}}">Tenant</x-btn-link>
+                    
                 </div>
             </div>
         </div>
