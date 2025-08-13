@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TenantHomeController;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
@@ -24,6 +25,7 @@ Route::middleware([
     InitializeTenancyByDomain::class,
     PreventAccessFromCentralDomains::class,
 ])->group(function () {
-    Route::get('/', [TenantHomeController::class, 'index']);
-    Route::get('/product/store', [TenantHomeController::class, 'store'])->name('product.create');
+    Route::get('/', [TenantHomeController::class, 'home'])->name('tenant.home');
+    Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
+    Route::post('/product/store', [ProductController::class, 'store'])->name('product.store');
 });
