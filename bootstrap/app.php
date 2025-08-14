@@ -10,8 +10,14 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
         then: function () {
+        $centralDomains = config('tenancy.central_domains');
+        $host = request()->getHost();
+
+        // Only load tenant routes if not central domain
+        if (!in_array($host, $centralDomains, true)) {
             require __DIR__.'/../routes/tenant.php';
         }
+    }
     )
     ->withMiddleware(function (Middleware $middleware): void {
         //

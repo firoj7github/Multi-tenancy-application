@@ -10,6 +10,6 @@ class TenantHomeController extends Controller
     public function home (){
 
         $products = Product::get();
-        return view('home.index', compact('products'));
+        return view('tenant_home.index', compact('products'));
     }
 }
